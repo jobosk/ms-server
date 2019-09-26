@@ -1,8 +1,4 @@
-FROM openjdk:8-jre-alpine
-ENV APP_FILE ms-server-0.0.1-SNAPSHOT.jar
-ENV APP_HOME /usr/apps
-EXPOSE 8080
-COPY target/$APP_FILE $APP_HOME/
-WORKDIR $APP_HOME
-ENTRYPOINT ["sh", "-c"]
-CMD ["exec java -jar $APP_FILE"]
+FROM maven:3.3.9
+WORKDIR /data/app
+RUN git clone https://github.com/jobosk/ms-server.git
+CMD [ "mvn clean install spring-boot:run" ]
