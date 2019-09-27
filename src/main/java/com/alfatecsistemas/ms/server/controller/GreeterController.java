@@ -16,6 +16,11 @@ public class GreeterController {
 
   @RequestMapping(value = "/greetings")
   public String greet() {
+    try {
+      Thread.sleep(1000);
+    } catch (final Exception e) {
+      return "Waiting error";
+    }
     return "Server " + podName + " says: " + greetings.get(new Random().nextInt(greetings.size()));
   }
 
