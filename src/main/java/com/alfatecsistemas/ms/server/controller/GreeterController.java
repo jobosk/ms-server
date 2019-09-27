@@ -1,6 +1,5 @@
 package com.alfatecsistemas.ms.server.controller;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,14 +11,12 @@ import java.util.Random;
 @RequestMapping("/server")
 public class GreeterController {
 
-  @Value("${server.port:#{null}}")
-  private String port;
-
+  final String podName = System.getenv("HOSTNAME");
   final static List<String> greetings = Arrays.asList("Hi there", "Greetings", "Salutations");
 
   @RequestMapping(value = "/greetings")
   public String greet() {
-    return "Server " + port + " says: " + greetings.get(new Random().nextInt(greetings.size()));
+    return "Server " + podName + " says: " + greetings.get(new Random().nextInt(greetings.size()));
   }
 
 }
