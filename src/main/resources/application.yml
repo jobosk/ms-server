@@ -4,13 +4,13 @@ management:
   endpoints:
     web:
       exposure:
-        include: '*'
+        include: ["prometheus", "metrics"]
   metrics:
     export:
       prometheus:
         enabled: true
   endpoint:
     metrics:
-      enabled: false
+      enabled: true
     prometheus:
       enabled: true
